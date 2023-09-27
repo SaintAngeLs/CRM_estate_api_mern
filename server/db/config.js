@@ -21,7 +21,13 @@ const connectDB = async (DATABASE_URL, DATABASE) => {
             // Hash the password
             const hashedPassword = await bcrypt.hash(password, 10);
             // Create a new user
-            const user = new User({ _id: new mongoose.Types.ObjectId('64d33173fd7ff3fa0924a109'), username, password: hashedPassword, firstName, lastName, phoneNumber, role: 'admin' });
+            const user = new User({ _id: new mongoose.Types.ObjectId('64d33173fd7ff3fa0924a109'), 
+                                    username, 
+                                    password: hashedPassword, 
+                                    firstName, 
+                                    lastName, 
+                                    phoneNumber, 
+                                    role: 'admin' });
             // Save the user to the database
             await user.save();
             console.log("Admin created successfully..");
@@ -35,4 +41,5 @@ const connectDB = async (DATABASE_URL, DATABASE) => {
         console.log("Database Not connected", err.message);
     }
 }
+
 module.exports = connectDB

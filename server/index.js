@@ -1,10 +1,11 @@
 const express = require('express');
-const db = require('./db/config')
+const db = require('./db/config');
 const route = require('./controllers/route');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');;
 const cors = require('cors');
-const port = 5001
-require('dotenv').config()
+const port = 5001;
+// const port = process.env.SERVER_PORT;
+require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 
@@ -51,7 +52,8 @@ app.get('/', async (req, res) => {
 // Get port from environment and store in Express.
 
 const server = app.listen(port, () => {
-    const protocol = (process.env.HTTPS === 'true' || process.env.NODE_ENV === 'production') ? 'https' : 'http';
+    const protocol = (process.env.HTTPS === 'true' || 
+    process.env.NODE_ENV === 'production') ? 'https' : 'http';
     const { address, port } = server.address();
     const host = address === '::' ? '127.0.0.1' : address;
     console.log(`Server listening at ${protocol}://${host}:${port}`);
@@ -59,8 +61,12 @@ const server = app.listen(port, () => {
 
 
 // Connect to MongoDB
-const DATABASE_URL = process.env.DB_URL || 'mongodb://127.0.0.1:27017'
+const DATABASE_URL = process.env.DB_URI
+console.log("DATABASE_URL:", DATABASE_URL); 
+//const DATABASE_URL = process.env.DB_URL || 'mongodb://127.0.0.1:27017'
 // const DATABASE_URL = 'mongodb://127.0.0.1:27017'
-const DATABASE = process.env.DB || 'Prolink'
+const DATABASE = process.env.DB_NAME 
+console.log("DATABASE:", DATABASE); 
+//|| 'Prolink'
 
 db(DATABASE_URL, DATABASE);

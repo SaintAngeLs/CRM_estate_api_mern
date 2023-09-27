@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 
+// isomorphic to the the email model
 const phoneCall = new mongoose.Schema({
+
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
         required: true
     },
+
     recipient: { type: String },
     callDuration: { type: String },
     callNotes: { type: String },
@@ -23,7 +26,7 @@ const phoneCall = new mongoose.Schema({
     timestamp: {
         type: Date,
         default: Date.now
-    }
-})
+    },
+});
 
 module.exports = mongoose.model('PhoneCall', phoneCall);

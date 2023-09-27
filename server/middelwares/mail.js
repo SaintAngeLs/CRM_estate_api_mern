@@ -9,16 +9,22 @@ const sendEmail = async (to, subject, text) => {
 
             // Create a transporter using the SMTP settings for Outlook
             const transporter = nodemailer.createTransport({
-                host: 'smtp.office365.com',
-                port: 587,
+
+                host: process.env.MAIL_HOST,
+
+                port: process.env.MAIL_PORT,
+
                 auth: {
-                    user: 'prolink@gmail.com',
-                    pass: 'emailpass@17'
+                    user: process.env.MAIL_USER_EMAIL,
+
+                    pass: process.env.MAIL_USER_PASSWORD,
                 }
             });
 
             const mailOptions = {
-                from: 'prolink@gmail.com',
+
+                from: process.env.MAIL_USER_EMAIL,
+                
                 to: to,
                 subject: subject,
                 text: text

@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 
 const Contact = new mongoose.Schema({
-    // 1. Basic Information
+
+    // 1. Basic Information of the contact :
     firstName: String,
     lastName: String,
     title: String,
@@ -12,40 +13,50 @@ const Contact = new mongoose.Schema({
     physicalAddress: String,
     mailingAddress: String,
     preferredContactMethod: String,
+
     // 2.Lead Source Information
     leadSource: String,
     referralSource: String,
     campaignSource: String,
+
     // 3. Status and Classifications
     leadStatus: String,
     leadRating: Number,
     leadConversionProbability: String,
+
     // 4. Property of Interest
     interestProperty: [{
         type: mongoose.Schema.ObjectId,
         ref: 'property',
     }],
+
     // 5. History:
     notesandComments: String,
+
     // 6. Tags or Categories
     tagsOrLabelsForcategorizingcontacts: String,
+
     // 7. Important Dates:
     birthday: Date,
     anniversary: Date,
     keyMilestones: String,
+
     // 8. Additional Personal Information
     dob: String,
     gender: String,
     occupation: String,
     interestsOrHobbies: String,
+
     // 9. Preferred  Communication Preferences:
     communicationFrequency: String,
     preferences: String,
+
     // 10. Social Media Profiles:
     linkedInProfile: String,
     facebookProfile: String,
     twitterHandle: String,
     otherProfiles: String,
+
     // 11. Lead Assignment and Team Collaboration:
     agentOrTeamMember: String,
     internalNotesOrComments: String,
@@ -58,7 +69,7 @@ const Contact = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-})
+});
 
 module.exports = mongoose.model('Contact', Contact)
 

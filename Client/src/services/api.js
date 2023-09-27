@@ -1,8 +1,14 @@
 import axios from "axios"
-import { constant } from "constant"
+import { constant } from "../constant"
 
 
 export const postApi = async (path, data, login) => {
+    
+    //constant.baseUrl = "http://localhost:3000/";
+
+    console.log('Base URL: ', constant.baseUrl)
+
+
     try {
         let result = await axios.post(constant.baseUrl + path, data, {
             headers: {
